@@ -1,5 +1,3 @@
-// Esta classe representa apenas os dados de um estado brasileiro.
-// Ela nao faz chamada para a internet.
 class Estado {
   final int codigoUf;
   final String uf;
@@ -17,7 +15,6 @@ class Estado {
     required this.regiao,
   });
 
-  // Cria um Estado usando os dados que vieram no JSON.
   factory Estado.fromJson(Map<String, dynamic> json) {
     return Estado(
       codigoUf: json['codigo_uf'],
