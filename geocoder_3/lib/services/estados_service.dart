@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:aula3_geocoder_api/models/estado.dart';
 import 'package:http/http.dart' as http;
 
+// Esta classe cuida somente da comunicacao com a URL dos estados.
 class EstadosService {
   static const String urlEstados =
       'https://raw.githubusercontent.com/kelvins/municipios-brasileiros/refs/heads/main/json/estados.json';
 
+  // Busca os estados e transforma cada item do JSON em um objeto Estado.
   Future<List<Estado>> buscarEstados() async {
     final response = await http.get(Uri.parse(urlEstados));
 
