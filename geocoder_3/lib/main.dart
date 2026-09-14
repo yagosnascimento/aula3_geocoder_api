@@ -9,7 +9,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 // flutter run -d web-server
-// Nominatim (serviço de geocoder da plataforma OpenStreetMap)
+// Nominatim
 
 /*
   q = query
@@ -51,16 +51,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // campo de texto para busca do valor
   final _searchController = TextEditingController();
-  // debounce = espera X segundos até requisição HTTP
   Timer? _debounce;
   GeocodeResult? _geocodeResult;
 
   @override
   void initState() {
     super.initState();
-    // padrão de projeto Observable
     _searchController.addListener(() {
       if (_searchController.text.isEmpty) {
         setState(() {
@@ -90,7 +87,6 @@ class _HomePageState extends State<HomePage> {
       if (_geocodeResult == null) {
         _searchController.clear();
         if (mounted) {
-          // limpar as notificações em tela
           ScaffoldMessenger.of(context).clearSnackBars();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -103,8 +99,6 @@ class _HomePageState extends State<HomePage> {
         }
       }
 
-      // atualiza os estado do widget tanto para limpar
-      //   como para construir
       setState(() {});
     });
   }
@@ -131,7 +125,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               controller: _searchController,
-              // onChanged: (value) => _onSearchChanged(value),
               onChanged: _onSearchChanged,
             ),
             _geocodeResult == null
@@ -357,7 +350,7 @@ class _MapPageState extends State<MapPage> {
             onPressed: () => zoomRestore(),
             backgroundColor: Colors.orange.shade900,
             child: Icon(Icons.restore_outlined),
-          )
+          ),
         ],
       ),
     );
